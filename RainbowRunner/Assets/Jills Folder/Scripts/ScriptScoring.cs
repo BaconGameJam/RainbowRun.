@@ -5,7 +5,7 @@ public class ScriptScoring : MonoBehaviour {
 	
 	public GUIStyle scoreStyle;
 	
-	public int score, distance, coins;
+	private ulong score, distance, coins;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +15,12 @@ public class ScriptScoring : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		distance += 1;						// Update the distance every frame
+		
+		// CLAMP SCORE TO 0 IF LESS THAN 0
+		if(score < 0)
+		{
+			score = 0;	
+		}
 		
 		if(coins <= 0)						// If score is less than 0
 		{
@@ -26,9 +32,9 @@ public class ScriptScoring : MonoBehaviour {
 		}
 	}
 	
-	void AddCoin()
+	void AddCoin(uint addedCoins)
 	{
-		coins += 1;	
+		coins += addedCoins;	
 	}
 	
 	// GUI FOR SCORING

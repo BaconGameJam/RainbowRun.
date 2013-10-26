@@ -17,7 +17,7 @@ public class ScriptTime : MonoBehaviour {
 		largeTextOffset = 200;
 		GUI.color = Color.red;
 		fontBoost = false;
-		fontBoostTime = 0.5f;
+		fontBoostTime = 0.25f;
 	}
 	
 	// Update is called once per frame
@@ -25,11 +25,12 @@ public class ScriptTime : MonoBehaviour {
 	{
 		timeRemaining -= Time.deltaTime;
 		
-		// For testing
+		// FOR TESTING - REMEMBER TO REMOVE
 		if(timeRemaining <= 0.0f)
 		{
 			AddTime(10.0f);	
 		}
+		// END TESTING - REMEMBER TO REMOVE
 		
 		if(fontBoost)
 		{
@@ -67,7 +68,7 @@ public class ScriptTime : MonoBehaviour {
 		timeRemaining += plusTime;
 		timeStyle.fontSize = 100;
 		fontBoost = true;
-		fontBoostTime = 0.5f;
+		fontBoostTime = 0.25f;
 		timeStyle.normal.textColor = Color.white;
 	}
 }
