@@ -16,8 +16,8 @@ public class ForegroundScript : MonoBehaviour
 		slowSpeed = 0.5f;
 		fastSpeed = 1.0f;
 		velocity = 	0.25f;
-		startPos = 24;
-		finalPos = -24;
+		startPos = 30;
+		finalPos = -47;
 		slowRunner = true;
 		fastRunner = false;
 		
@@ -29,7 +29,7 @@ public class ForegroundScript : MonoBehaviour
 		
 		for(int i = 0; i < prefabList.Length; i++)
 		{
-			if(prefabList[i].transform.position.x >= -24)
+			if(prefabList[i].transform.position.x >= -47)
 			{
 				if(slowRunner)
 				{
@@ -43,7 +43,7 @@ public class ForegroundScript : MonoBehaviour
 			}
 			else
 			{
-				prefabList[i].transform.position = new Vector3(24,0,0);
+				prefabList[i].transform.position = new Vector3(startPos,0,0);
 			}
 		}
 	
