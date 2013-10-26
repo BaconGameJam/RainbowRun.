@@ -16,13 +16,13 @@ public class goldCoinScript : MonoBehaviour
 	void Start () 
 	{
 		
-		rotSpeed = 0.75f;
+		rotSpeed = 0.01f;
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
 		currSpeed = 0.0f;
 		rotpos = 0.0f;
 		startP = new Vector3(30, getStartPos(), -1);
-		endPos = new Vector3(-30,startPos,-1);
+		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
 	}
@@ -53,20 +53,24 @@ public class goldCoinScript : MonoBehaviour
 			this.transform.position -= new Vector3(currSpeed * Time.deltaTime, 0,0);
 		}
 		
+		// If the coin has moved off screen to the left, reset it
 		if( this.transform.position.x <= -30)
 		{
 			currTime = 0;
 			currSpeed = 0;
 			rotpos = 0;
 			getStartTime();
+			SetStartPosition();
 			this.transform.position = startP;
 		}
-		rotpos += rotSpeed * Time.deltaTime;
-		this.transform.localRotation = new Quaternion(0,rotpos,0,0);
+		rotpos += rotSpeed;
+		this.transform.Rotate(0, rotpos, 0);
+		//this.transform.localRotation = new Quaternion(0,rotpos,0,0);
 		currTime += Time.deltaTime;
 
 	}
 	
+	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
 		int tempStart = Random.Range(0,5);
@@ -74,27 +78,28 @@ public class goldCoinScript : MonoBehaviour
 		switch(tempStart)
 		{
 		case 0:
-			startPos = 0.8f;
+			startPos = 0.4f;	// RED
 			break;
 		case 1:
-			startPos = 0.0f;
+			startPos = -0.45f;	// ORANGE
 			break;
 		case 2:
-			startPos = -0.8f;
+			startPos = -1.3f;	// YELLOW
 			break;
 		case 3:
-			startPos = -0.16f;
+			startPos = -2.2f;	// GREEN
 			break;
 		case 4:
-			startPos = -0.24f;
+			startPos = -3.0f;	// BLUE
 			break;
 		case 5:
-			startPos = -0.32f;
+			startPos = -4.2f;	// PURPLE
 			break;
 			
 		}
 		return startPos;
 	}
+	
 	float randomTime()
 	{
 		float tempTime  = Random.Range(0,10.0f);
@@ -105,5 +110,10 @@ public class goldCoinScript : MonoBehaviour
 		currTime = Time.deltaTime;
 		startTime = currTime + randomTime();
 		return startTime;
+	}
+	
+	void SetStartPosition()
+	{
+		startP = new Vector3(30, getStartPos(), -1);	
 	}
 }

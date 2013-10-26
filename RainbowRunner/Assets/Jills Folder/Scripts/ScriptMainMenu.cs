@@ -23,10 +23,12 @@ public class ScriptMainMenu : MonoBehaviour {
 			{
 				if(hit.collider.transform.tag == "StartButton")
 				{
+					//Application.LoadLevel("");
 					Debug.Log("Start Clicked");	
 				}
 				else if(hit.collider.transform.tag == "ExitButton")
 				{
+					//Application.LoadLevel("");
 					Debug.Log("Exit Clicked");	
 				}
 			}
