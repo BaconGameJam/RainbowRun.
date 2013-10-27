@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AngryCloudScript : MonoBehaviour 
+public class TimeClockScript : MonoBehaviour 
 {
-	
-	public GameObject angryCloud;
+
+public GameObject timeClock;
 	public float slowSpeed, fastSpeed, currSpeed,
 		currTime, startTime, startPos;
 	private Vector3 endPos, startP;
-	private int angryCloudCount;
+	private int shamrockCount;
 	public bool goingSlow, goingFast;
 	
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
 	public ColorState colorState;
+	
 
 	// Use this for initialization
 	void Start () 
@@ -25,12 +26,13 @@ public class AngryCloudScript : MonoBehaviour
 		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
-		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		
+		
 		if(startTime < currTime)
 		{
 			if(goingSlow)
