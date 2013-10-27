@@ -70,7 +70,7 @@ public class AngryCloudScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		tempStart = Random.Range(0,-3);
+		tempStart = Random.Range(0,-6);
 		
 		switch(tempStart)
 		{

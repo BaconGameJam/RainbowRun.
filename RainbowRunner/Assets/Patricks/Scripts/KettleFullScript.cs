@@ -11,7 +11,7 @@ public class KettleFullScript : MonoBehaviour
 	private Vector3 endPos, startP;
 	private int fullKettleCount;
 	public bool goingSlow, goingFast;
-	int tempStart;
+	public int tempStart;
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
 	public ColorState colorState;
@@ -72,7 +72,7 @@ public class KettleFullScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		int tempStart = Random.Range(0,-6);
+		int tempStart = Random.Range(-2,-3);
 		
 		switch(tempStart)
 		{
@@ -81,11 +81,11 @@ public class KettleFullScript : MonoBehaviour
 			colorState = ColorState.RED;
 			break;
 		case -1:
-			startPos = -0.45f;	// ORANGE
+			startPos = -0.42f;	// ORANGE
 			colorState = ColorState.ORANGE;
 			break;
 		case -2:
-			startPos = -1.3f;	// YELLOW
+			startPos = -0.9f;	// YELLOW
 			colorState = ColorState.YELLOW;
 			break;
 		case -3:
@@ -97,7 +97,7 @@ public class KettleFullScript : MonoBehaviour
 			colorState = ColorState.BLUE;
 			break;
 		case -5:
-			startPos = -4.0f;	// PURPLE
+			startPos = -3.8f;	// PURPLE
 			colorState = ColorState.PURPLE;
 			break;
 			

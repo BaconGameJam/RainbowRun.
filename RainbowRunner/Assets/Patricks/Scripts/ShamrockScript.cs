@@ -11,7 +11,7 @@ public class ShamrockScript : MonoBehaviour
 	private Vector3 endPos, startP;
 	private int shamrockCount;
 	public bool goingSlow, goingFast;
-	int tempStart;
+	public int tempStart;
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
 	public ColorState colorState;

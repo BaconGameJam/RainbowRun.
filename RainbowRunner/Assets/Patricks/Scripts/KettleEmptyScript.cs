@@ -72,7 +72,7 @@ public class KettleEmptyScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		 tempStart = Random.Range(0,-6);
+		 tempStart = Random.Range(-1,-2);
 		
 		switch(tempStart)
 		{
@@ -85,7 +85,7 @@ public class KettleEmptyScript : MonoBehaviour
 			colorState = ColorState.ORANGE;
 			break;
 		case -2:
-			startPos = -1.3f;	// YELLOW
+			startPos = -1.1f;	// YELLOW
 			colorState = ColorState.YELLOW;
 			break;
 		case -3:
@@ -93,7 +93,7 @@ public class KettleEmptyScript : MonoBehaviour
 			colorState = ColorState.GREEN;
 			break;
 		case -4:
-			startPos = -3.0f;	// BLUE
+			startPos = -2.8f;	// BLUE
 			colorState = ColorState.BLUE;
 			break;
 		case -5:
