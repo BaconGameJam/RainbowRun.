@@ -11,6 +11,10 @@ public class KettleEmptyScript : MonoBehaviour
 	private int emptyKettleCount;
 	public bool goingSlow, goingFast;
 	
+	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
+	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
+	public ColorState colorState;
+	
 
 	// Use this for initialization
 	void Start () 
@@ -22,6 +26,7 @@ public class KettleEmptyScript : MonoBehaviour
 		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
+		
 	}
 	
 	// Update is called once per frame
@@ -71,22 +76,28 @@ public class KettleEmptyScript : MonoBehaviour
 		switch(tempStart)
 		{
 		case 0:
-			startPos = 0.2f;	// RED
+			startPos = 0.4f;	// RED
+			colorState = ColorState.RED;
 			break;
 		case 1:
-			startPos = -0.65f;	// ORANGE
+			startPos = -0.45f;	// ORANGE
+			colorState = ColorState.ORANGE;
 			break;
 		case 2:
-			startPos = -1.5f;	// YELLOW
+			startPos = -1.3f;	// YELLOW
+			colorState = ColorState.YELLOW;
 			break;
 		case 3:
-			startPos = -2.3f;	// GREEN
+			startPos = -2.2f;	// GREEN
+			colorState = ColorState.GREEN;
 			break;
 		case 4:
-			startPos = -3.2f;	// BLUE
+			startPos = -3.0f;	// BLUE
+			colorState = ColorState.BLUE;
 			break;
 		case 5:
-			startPos = -4.0f;	// PURPLE
+			startPos = -4.2f;	// PURPLE
+			colorState = ColorState.PURPLE;
 			break;
 			
 		}

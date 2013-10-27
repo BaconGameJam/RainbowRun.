@@ -11,6 +11,9 @@ public class AngryCloudScript : MonoBehaviour
 	private int angryCloudCount;
 	public bool goingSlow, goingFast;
 	
+	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
+	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
+	public ColorState colorState;
 
 	// Use this for initialization
 	void Start () 
@@ -22,13 +25,12 @@ public class AngryCloudScript : MonoBehaviour
 		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
+		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
-		
 		if(startTime < currTime)
 		{
 			if(goingSlow)
@@ -72,21 +74,27 @@ public class AngryCloudScript : MonoBehaviour
 		{
 		case 0:
 			startPos = 0.4f;	// RED
+			colorState = ColorState.RED;
 			break;
 		case 1:
 			startPos = -0.45f;	// ORANGE
+			colorState = ColorState.ORANGE;
 			break;
 		case 2:
 			startPos = -1.3f;	// YELLOW
+			colorState = ColorState.YELLOW;
 			break;
 		case 3:
 			startPos = -2.2f;	// GREEN
+			colorState = ColorState.GREEN;
 			break;
 		case 4:
 			startPos = -3.0f;	// BLUE
+			colorState = ColorState.BLUE;
 			break;
 		case 5:
 			startPos = -4.2f;	// PURPLE
+			colorState = ColorState.PURPLE;
 			break;
 			
 		}

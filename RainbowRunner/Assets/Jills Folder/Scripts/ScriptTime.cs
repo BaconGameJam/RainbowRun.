@@ -52,12 +52,12 @@ public class ScriptTime : MonoBehaviour {
 	{
 		if(fontBoost)
 		{
-			GUI.Label(new Rect((Screen.width / 2) - largeTextOffset, 50, 400, 20), 
+			GUI.Label(new Rect((Screen.width / 2) - largeTextOffset, 25, 400, 20), 
 				"Time: " + timeRemaining.ToString("F2"), timeStyle);
 		}
 		else
 		{
-			GUI.Label(new Rect((Screen.width / 2) - smallTextOffset, 50, 400, 20), 
+			GUI.Label(new Rect((Screen.width / 2) - smallTextOffset, 25, 400, 20), 
 				"Time: " + timeRemaining.ToString("F2"), timeStyle);
 		}
 	}
