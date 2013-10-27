@@ -4,20 +4,16 @@ using System.Collections;
 public class mainPlayer : MonoBehaviour {
 	
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
- 	public ColorState colorState;
+ 	public  ColorState colorState;
 	
 	//Refrence Scrips
-	public AngryCloudScript cloudColor;
-	public GameObject cloudObject;
-	private goldCoinScript goldCoinColor;
-	public GameObject goldCoinObject;
+	/*private AngryCloudScript angryCloudScript;
+	public  GameObject[] angryCloudObject;
+	private goldCoinScript goldCoinObject;
 	private KettleFullScript kettleFullColor;
-	public GameObject kettleFullObject;
 	private KettleEmptyScript kettleEmptyColor;
-	public GameObject kettleEmptyObject;
 	private ShamrockScript shamrockColor;
-	public GameObject shamrockObject;
-	
+	private TimeClockScript timeClock;*/          
 	//Game Objects
 	public GameObject Player;
 	
@@ -26,29 +22,33 @@ public class mainPlayer : MonoBehaviour {
 	float xPostion = -4.0f;
 	float zPostion = -1.0f;
 	float playerScale = 2.0f;
+	float bacon = 0.001f;
 	
 	//current lane
-	int currentLane = 0;
+	public int currentLane = 0;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		cloudObject = GameObject.FindWithTag("meanMuggin");
-		cloudColor = cloudObject.GetComponent<AngryCloudScript>();
+		//angryCloudScript = angryCloudObject[0].GetComponent<AngryCloudScript>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		//Movement down
+		bacon *= -1;
+		Player.transform.position += new Vector3( bacon,0,0);
+		
+			
+			//Movement down
 		if(Input.GetKeyDown(KeyCode.S) && currentLane != -5)
 		{
 			//Move player Down
 			yPostion -= 0.8f;
 			Player.transform.position = new Vector3(xPostion,yPostion,zPostion);
 			//Scale player up
-			playerScale += 0.2f;
-			Player.transform.localScale = new Vector3(playerScale,playerScale,1.0f); 
+			//playerScale += 0.2f;
+			//Player.transform.localScale = new Vector3(playerScale,playerScale,1.0f); 
 			//change current lane
 			currentLane = currentLane - 1;
 			
@@ -62,8 +62,8 @@ public class mainPlayer : MonoBehaviour {
 			yPostion += 0.8f;
 			Player.transform.position = new Vector3(xPostion,yPostion,zPostion);
 			//Scale player down
-			playerScale -= 0.2f;
-			Player.transform.localScale = new Vector3(playerScale,playerScale,1.0f);
+			//playerScale -= 0.2f;
+			//Player.transform.localScale = new Vector3(playerScale,playerScale,1.0f);
 			//change current lane
 			currentLane = currentLane + 1;	
 			
@@ -97,41 +97,49 @@ public class mainPlayer : MonoBehaviour {
 		}
 	}
 	
-	public void OnCollisionEnter(Collision other)
-    {
-		#region object collison
-		//Mean Cloud
-        if (other.gameObject.tag == "meanMuggin" && (int)colorState == (int)cloudColor.colorState)
-        {
-			//Reduce Time
-			//Reset Multiply		
-			//Add Stumbles
-			Player.transform.position = new Vector3(-2,yPostion,zPostion);
-        }
+	/*public void OnTriggerEnter(Collider other)
+    { 
+		Debug.Log("fuck");
+	
+		
+		//Mean Cloudci
+        if (other.gameObject.tag == "meanMuggin")
+		{
+			print ("hit the cloud");
+				//Reduce Time
+				//Reset Multiply		
+				//Add Stumble
+				other.gameObject.transform.position = new Vector3 ( -30,0,-1);
+		}
+		
 		//Gold Coin
-		if (other.gameObject.tag == "goldCoin")
+		eif (other.gameObject.tag == "goldCoin" )
         {
+			print ("hit the coin");
 			//Add Coin
+			other.gameObject.transform.position = new Vector3 ( -30,0,-1);
         }
 		//Empty Kettle
 		if (other.gameObject.tag == "kettleEmpty")
         {
-			//
+			print("hit the kettle");		//
 			//Reset Multiply
 			//Add Stumbles
+			other.gameObject.transform.position = new Vector3 ( -30,0,-1);
         }
 		//Add Time
 		if (other.gameObject.tag == "clock")
         {
 			//Add Time
 			//AddTime(10);
+			other.gameObject.transform.position = new Vector3 ( -30,0,-1);
 		}
 		//Multiplyer up
 		if (other.gameObject.tag == "Shamrock")
         {
             //Up Multiplyer
         }
-		#endregion
 		
-	}
+		
+	}*/
 }

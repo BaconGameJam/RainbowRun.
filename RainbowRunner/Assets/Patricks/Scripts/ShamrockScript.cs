@@ -3,14 +3,15 @@ using System.Collections;
 
 public class ShamrockScript : MonoBehaviour 
 {
-	
+	public GameObject player;
+	private mainPlayer playerScript;
 	public GameObject shamrock;
 	public float slowSpeed, fastSpeed, currSpeed,
 		currTime, startTime, startPos;
 	private Vector3 endPos, startP;
 	private int shamrockCount;
 	public bool goingSlow, goingFast;
-	
+	int tempStart;
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
 	public ColorState colorState;
@@ -19,6 +20,7 @@ public class ShamrockScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
 		currSpeed = 0.0f;
@@ -26,6 +28,7 @@ public class ShamrockScript : MonoBehaviour
 		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
+		playerScript = player.GetComponent<mainPlayer>();
 	}
 	
 	// Update is called once per frame
@@ -70,7 +73,7 @@ public class ShamrockScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		int tempStart = Random.Range(0,6);
+		 tempStart = Random.Range(0,-6);
 		
 		switch(tempStart)
 		{
@@ -78,23 +81,23 @@ public class ShamrockScript : MonoBehaviour
 			startPos = 0.4f;	// RED
 			colorState = ColorState.RED;
 			break;
-		case 1:
+		case -1:
 			startPos = -0.45f;	// ORANGE
 			colorState = ColorState.ORANGE;
 			break;
-		case 2:
+		case -2:
 			startPos = -1.3f;	// YELLOW
 			colorState = ColorState.YELLOW;
 			break;
-		case 3:
+		case -3:
 			startPos = -2.2f;	// GREEN
 			colorState = ColorState.GREEN;
 			break;
-		case 4:
+		case -4:
 			startPos = -3.0f;	// BLUE
 			colorState = ColorState.BLUE;
 			break;
-		case 5:
+		case -5:
 			startPos = -4.0f;	// PURPLE
 			colorState = ColorState.PURPLE;
 			break;
@@ -118,5 +121,15 @@ public class ShamrockScript : MonoBehaviour
 	void SetStartPosition()
 	{
 		startP = new Vector3(30, getStartPos(), -1);	
+	}
+	
+	public void OnTriggerEnter(Collider other)
+	{
+		print ("hit shamr");
+		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
+		{
+			print ("hit the player");
+			this.gameObject.transform.position = new Vector3(-30,0,-1);
+		}
 	}
 }
