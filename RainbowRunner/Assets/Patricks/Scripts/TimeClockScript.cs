@@ -3,23 +3,21 @@ using System.Collections;
 
 public class TimeClockScript : MonoBehaviour 
 {
-	public GameObject player;
 	private mainPlayer playerScript;
-public GameObject timeClock;
-	public float slowSpeed, fastSpeed, currSpeed,
+	public GameObject player;
+	private float slowSpeed, fastSpeed, currSpeed,
 		currTime, startTime, startPos;
 	private Vector3 endPos, startP;
-	public int tempStart;
 	public bool goingSlow, goingFast;
-	
+	public int tempStart;
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
-	public ColorState colorState;
-	
+	public  ColorState colorState;
 
 	// Use this for initialization
 	void Start () 
 	{
+		playerScript = player.GetComponent<mainPlayer>();
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
 		currSpeed = 0.0f;
@@ -27,14 +25,12 @@ public GameObject timeClock;
 		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
-		playerScript = player.GetComponent<mainPlayer>();
+		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
-		
 		if(startTime < currTime)
 		{
 			if(goingSlow)
@@ -77,29 +73,30 @@ public GameObject timeClock;
 		switch(tempStart)
 		{
 		case 0:
-			startPos = 0.4f;	// RED
+			startPos = 0.5f;	// RED
 			colorState = ColorState.RED;
 			break;
 		case -1:
-			startPos = -0.45f;	// ORANGE
+			startPos = -0.3f;	// ORANGE
 			colorState = ColorState.ORANGE;
 			break;
 		case -2:
-			startPos = -1.3f;	// YELLOW
+			startPos = -1.1f;	// YELLOW
 			colorState = ColorState.YELLOW;
 			break;
 		case -3:
-			startPos = -2.2f;	// GREEN
+			startPos = -2.0f;	// GREEN
 			colorState = ColorState.GREEN;
 			break;
 		case -4:
-			startPos = -3.0f;	// BLUE
+			startPos = -2.7f;	// BLUE
 			colorState = ColorState.BLUE;
 			break;
 		case -5:
-			startPos = -3.8f;	// PURPLE
+			startPos = -3.7f;	// PURPLE
 			colorState = ColorState.PURPLE;
 			break;
+			
 		}
 		return startPos;
 	}
@@ -120,12 +117,13 @@ public GameObject timeClock;
 	{
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
-		public void OnTriggerEnter(Collider other)
+	
+	/*public void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
 		{
 			print ("hit the player");
-			this.gameObject.transform.position = new Vector3(-30,0,-1);
+			this.gameObject.transform.position = endPos;
 		}
-	}
+	}*/
 }

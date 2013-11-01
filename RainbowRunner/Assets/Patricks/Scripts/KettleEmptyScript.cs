@@ -11,7 +11,7 @@ public class KettleEmptyScript : MonoBehaviour
 	private Vector3 endPos, startP;
 	private int emptyKettleCount;
 	public bool goingSlow, goingFast;
-	private int tempStart;
+	public int tempStart;
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
 	public ColorState colorState;
@@ -72,7 +72,7 @@ public class KettleEmptyScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		 tempStart = Random.Range(-1,-2);
+		 tempStart = Random.Range(0,-6);
 		
 		switch(tempStart)
 		{
@@ -89,7 +89,7 @@ public class KettleEmptyScript : MonoBehaviour
 			colorState = ColorState.YELLOW;
 			break;
 		case -3:
-			startPos = -2.2f;	// GREEN
+			startPos = -2.0f;	// GREEN
 			colorState = ColorState.GREEN;
 			break;
 		case -4:
@@ -122,12 +122,12 @@ public class KettleEmptyScript : MonoBehaviour
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
 	
-	public void OnTriggerEnter(Collider other)
+	/*public void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
 		{
 			print ("hit the player");
-			this.gameObject.transform.position = new Vector3(-30,0,-1);
+			this.gameObject.transform.position = endPos;
 		}
-	}
+	}*/
 }

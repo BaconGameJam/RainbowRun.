@@ -72,7 +72,7 @@ public class KettleFullScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		int tempStart = Random.Range(-2,-3);
+		 tempStart = Random.Range(0,-6);
 		
 		switch(tempStart)
 		{
@@ -85,7 +85,7 @@ public class KettleFullScript : MonoBehaviour
 			colorState = ColorState.ORANGE;
 			break;
 		case -2:
-			startPos = -0.9f;	// YELLOW
+			startPos = -1.1f;	// YELLOW
 			colorState = ColorState.YELLOW;
 			break;
 		case -3:
@@ -122,12 +122,13 @@ public class KettleFullScript : MonoBehaviour
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
 	
-	public void OnTriggerEnter(Collider other)
+	/*public void OnTriggerEnter(Collider other)
 	{
+		print ("hit the something");
 		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
 		{
 			print ("hit the player");
-			this.gameObject.transform.position = new Vector3(-30,0,-1);
+			this.gameObject.transform.position = endPos;
 		}
-	}
+	}*/
 }

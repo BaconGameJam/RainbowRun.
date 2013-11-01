@@ -3,24 +3,22 @@ using System.Collections;
 
 public class ShamrockScript : MonoBehaviour 
 {
-	public GameObject player;
+public GameObject player;
 	private mainPlayer playerScript;
-	public GameObject shamrock;
-	public float slowSpeed, fastSpeed, currSpeed,
+	
+	private float slowSpeed, fastSpeed, currSpeed,
 		currTime, startTime, startPos;
 	private Vector3 endPos, startP;
-	private int shamrockCount;
 	public bool goingSlow, goingFast;
 	public int tempStart;
 	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
-	public ColorState colorState;
-	
+	public  ColorState colorState;
 
 	// Use this for initialization
 	void Start () 
 	{
-		
+		playerScript = player.GetComponent<mainPlayer>();
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
 		currSpeed = 0.0f;
@@ -28,14 +26,12 @@ public class ShamrockScript : MonoBehaviour
 		endPos = new Vector3(-30,startP.y,-1);
 		this.transform.position = startP;
 		startTime = getStartTime();
-		playerScript = player.GetComponent<mainPlayer>();
+		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		
-		
 		if(startTime < currTime)
 		{
 			if(goingSlow)
@@ -73,7 +69,7 @@ public class ShamrockScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		 tempStart = Random.Range(0,-6);
+		tempStart = Random.Range(0,-6);
 		
 		switch(tempStart)
 		{
@@ -82,23 +78,23 @@ public class ShamrockScript : MonoBehaviour
 			colorState = ColorState.RED;
 			break;
 		case -1:
-			startPos = -0.45f;	// ORANGE
+			startPos = -0.3f;	// ORANGE
 			colorState = ColorState.ORANGE;
 			break;
 		case -2:
-			startPos = -1.3f;	// YELLOW
+			startPos = -1.1f;	// YELLOW
 			colorState = ColorState.YELLOW;
 			break;
 		case -3:
-			startPos = -2.2f;	// GREEN
+			startPos = -2.0f;	// GREEN
 			colorState = ColorState.GREEN;
 			break;
 		case -4:
-			startPos = -3.0f;	// BLUE
+			startPos = -2.7f;	// BLUE
 			colorState = ColorState.BLUE;
 			break;
 		case -5:
-			startPos = -4.0f;	// PURPLE
+			startPos = -3.7f;	// PURPLE
 			colorState = ColorState.PURPLE;
 			break;
 			
@@ -123,13 +119,12 @@ public class ShamrockScript : MonoBehaviour
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
 	
-	public void OnTriggerEnter(Collider other)
+	/*public void OnTriggerEnter(Collider other)
 	{
-		print ("hit shamr");
 		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
 		{
 			print ("hit the player");
-			this.gameObject.transform.position = new Vector3(-30,0,-1);
+			this.gameObject.transform.position = endPos;
 		}
-	}
+	}*/
 }

@@ -128,12 +128,12 @@ public class goldCoinScript : MonoBehaviour
 	{
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
-	public void OnTriggerEnter(Collider other)
+	/*public void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
 		{
 			print ("hit the player");
-			this.gameObject.transform.position = new Vector3(-30,0,-1);
+			this.gameObject.transform.position = endPos;
 		}
-	}
+	}*/
 }
