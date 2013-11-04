@@ -14,7 +14,7 @@ public class mainPlayer : MonoBehaviour {
 	public GameObject fullK;      
 	private KettleEmptyScript emptyKScript;
 	public GameObject emptyK;      
-	private goldCoinScript coinScript;
+	private GoldCoin coinScript;
 	public GameObject coin;      
 	private AngryCloudScript cloudScript;
 	public GameObject cloud;      
@@ -39,7 +39,6 @@ public class mainPlayer : MonoBehaviour {
 		clockScript = clock.GetComponent<TimeClockScript>();
 		fullKScript = fullK.GetComponent<KettleFullScript>();
 		emptyKScript = emptyK.GetComponent<KettleEmptyScript>();
-		coinScript = coin.GetComponent<goldCoinScript>();
 		cloudScript = cloud.GetComponent<AngryCloudScript>();
 	}
 	
@@ -106,7 +105,7 @@ public class mainPlayer : MonoBehaviour {
 		}
 	}
 	
-	public void OnTriggerEnter(Collider other)
+	public void OnTriggerStay(Collider other)
     { 
 		
 		//Mean Cloudci
@@ -126,12 +125,10 @@ public class mainPlayer : MonoBehaviour {
 		//Gold Coin
 		else if (other.gameObject.tag == "goldCoin")
 		{ 
-			
-			if(coinScript.tempStart == currentLane )
-        	{
-			
-			//Add Coin
-			other.gameObject.transform.position = new Vector3 ( -30,0,-1);
+			coinScript = other.gameObject.GetComponent<GoldCoin>();
+			if(coinScript.currentLane == currentLane)
+			{
+				other.transform.position = new Vector3(-30, other.transform.position.y, other.transform.position.z);
 			}
         }
 		

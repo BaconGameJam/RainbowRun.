@@ -5,6 +5,7 @@ public class goldCoinScript : MonoBehaviour
 {
 	public struct goldCoinClone
 	{
+	
 		public Vector3 startPosition, endPosition;
 		public int currentLane, currentCoin;
 		public float currentSpeed, startTime, currentTime, rotSpeed, rotPosition;
@@ -14,7 +15,7 @@ public class goldCoinScript : MonoBehaviour
 	
 	public GameObject goldcoin;
 	public goldCoinClone [] goldCoinClones;
-	private GameObject [] clonedCoins;
+	public GameObject [] clonedCoins;
 	public float  startPos, fastSpeed, slowSpeed, stopSpeed;
 	public int coinCount, maxCoins, tempStart;
 		
@@ -22,6 +23,7 @@ public class goldCoinScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		
 		maxCoins = 10;
 		goldCoinClones = new goldCoinClone[maxCoins];	
 		clonedCoins = new GameObject[maxCoins];
@@ -132,6 +134,7 @@ public class goldCoinScript : MonoBehaviour
 		return startTime;
 	}
 
+	
 	/*public void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)

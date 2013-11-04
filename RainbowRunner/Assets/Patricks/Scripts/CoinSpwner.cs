@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CoinSpwner : MonoBehaviour {
 	public int currentCount, maxCount;
-	public GameObject goldcoin, parentObject;
+	public GameObject goldcoin;
 	private GameObject [] clones;
 	// Use this for initialization
 	void Start () 	
@@ -13,7 +13,8 @@ public class CoinSpwner : MonoBehaviour {
 		for(int i  = 0; currentCount < maxCount; i++)
 		{
 			clones[i] = Instantiate(goldcoin)as GameObject;
-			//clones[i].transform.parent = parentObject;
+			clones[i].transform.position = new Vector3( 30,0,-1);
+			clones[i].transform.parent = this.gameObject.transform;
 			currentCount++;
 		}
 	}
