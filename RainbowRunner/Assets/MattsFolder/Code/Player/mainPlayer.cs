@@ -27,7 +27,7 @@ public class mainPlayer : MonoBehaviour {
 	float xPostion = -4.0f;
 	float zPostion = -1.0f;
 	float bacon = 0.001f;
-	
+	bool fast, slow;
 	//current lane
 	public int currentLane = 0;
 	
@@ -55,7 +55,7 @@ public class mainPlayer : MonoBehaviour {
 			if( currentLane != -5)
 			{
 			//Move player Down
-			yPostion -= 0.8f;
+			yPostion -= 0.9f;
 			Player.transform.position = new Vector3(xPostion,yPostion,zPostion);
 			currentLane = currentLane - 1;
 			
@@ -70,7 +70,7 @@ public class mainPlayer : MonoBehaviour {
 			{
 			//Move player up
 			
-			yPostion += 0.8f;
+			yPostion += 0.9f;
 			Player.transform.position = new Vector3(xPostion,yPostion,zPostion);
 			currentLane = currentLane + 1;	
 			

@@ -5,21 +5,19 @@ public class ForegroundScript : MonoBehaviour
 {
 	public GameObject [] prefabList;
 	
-	private float slowSpeed, fastSpeed;
+	private float slowSpeed, fastSpeed, velocity;
 	private float startPos;
-	private float velocity;
-	private bool slowRunner, fastRunner;
+	public bool slow, fast;
 	// Use this for initialization
 	void Start () 
 	{
 		
-		slowSpeed = 0.5f;
-		fastSpeed = 1.0f;
-		velocity = 	0.25f;
-		startPos = 30;
-		
-		slowRunner = true;
-		fastRunner = false;
+		slowSpeed = 4.0f;
+		fastSpeed = 6.0f;
+		startPos = 28.0f;
+		velocity = 0.25f;
+		slow = true;
+		fast = false;
 		
 	}
 	
@@ -29,16 +27,16 @@ public class ForegroundScript : MonoBehaviour
 		
 		for(int i = 0; i < prefabList.Length; i++)
 		{
-			if(prefabList[i].transform.position.x >= -47)
+			if(prefabList[i].transform.position.x >= -13)
 			{
-				if(slowRunner)
+				if(slow)
 				{
-					prefabList[i].transform.position -= new Vector3(slowSpeed * velocity,0,0);
+					prefabList[i].transform.position -= new Vector3(slowSpeed * Time.deltaTime,0,0);
 				}
-				else if(fastRunner)
+				else if(fast)
 				{
 					
-					prefabList[i].transform.position -= new Vector3(fastSpeed * velocity,0,0);
+					prefabList[i].transform.position -= new Vector3(fastSpeed * Time.deltaTime,0,0);
 				}
 			}
 			else
