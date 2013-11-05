@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ForegroundScript : MonoBehaviour 
 {
+	public ForegroundScript Instance;
 	public GameObject [] prefabList;
 	
 	private float slowSpeed, fastSpeed, velocity;
@@ -11,10 +12,10 @@ public class ForegroundScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
+		Instance = this;
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
-		startPos = 28.0f;
+		startPos = 27.0f;
 		velocity = 0.25f;
 		slow = true;
 		fast = false;
@@ -27,7 +28,7 @@ public class ForegroundScript : MonoBehaviour
 		
 		for(int i = 0; i < prefabList.Length; i++)
 		{
-			if(prefabList[i].transform.position.x >= -13)
+			if(prefabList[i].transform.position.x >= -14)
 			{
 				if(slow)
 				{
@@ -41,7 +42,14 @@ public class ForegroundScript : MonoBehaviour
 			}
 			else
 			{
-				prefabList[i].transform.position = new Vector3(startPos,0,0);
+				if(i == 0)
+				{
+					prefabList[i].transform.position = new Vector3(prefabList[2].transform.position.x + 14, 0 ,0);
+				}
+				else
+				{
+					prefabList[i].transform.position = new Vector3(prefabList[i - 1].transform.position.x + 14,0,0);
+				}
 			}
 		}
 	

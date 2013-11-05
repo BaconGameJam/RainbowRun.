@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class mainPlayer : MonoBehaviour {
-	
+	public static mainPlayer Instance;
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
  	public  ColorState colorState;
-	
+	private BackgroundScript backScript;
+	public GameObject background;
 	private ShamrockScript shamScript;
 	public GameObject sham;      
 	private TimeClockScript clockScript;
@@ -15,7 +16,7 @@ public class mainPlayer : MonoBehaviour {
 	private KettleEmptyScript emptyKScript;
 	public GameObject emptyK;      
 	private GoldCoin coinScript;
-	public GameObject coin;      
+	private GameObject coin;      
 	private AngryCloudScript cloudScript;
 	public GameObject cloud;      
 
@@ -34,12 +35,13 @@ public class mainPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		
+		Instance = this;
 		shamScript = sham.GetComponent<ShamrockScript>();
 		clockScript = clock.GetComponent<TimeClockScript>();
 		fullKScript = fullK.GetComponent<KettleFullScript>();
 		emptyKScript = emptyK.GetComponent<KettleEmptyScript>();
 		cloudScript = cloud.GetComponent<AngryCloudScript>();
+		backScript = background.GetComponent<BackgroundScript>();
 	}
 	
 	// Update is called once per frame
@@ -103,6 +105,7 @@ public class mainPlayer : MonoBehaviour {
 			colorState = ColorState.PURPLE;
 			break;
 		}
+		backScript.changed = true;
 	}
 	
 	public void OnTriggerStay(Collider other)
