@@ -15,7 +15,7 @@ public class ForegroundScript : MonoBehaviour
 		Instance = this;
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
-		startPos = 27.0f;
+		startPos = 28.0f;
 		velocity = 0.25f;
 		slow = true;
 		fast = false;
@@ -44,11 +44,11 @@ public class ForegroundScript : MonoBehaviour
 			{
 				if(i == 0)
 				{
-					prefabList[i].transform.position = new Vector3(prefabList[2].transform.position.x + 14, 0 ,0);
+					prefabList[i].transform.position = new Vector3(prefabList[2].transform.position.x + 13.9f, 0 ,1);
 				}
 				else
 				{
-					prefabList[i].transform.position = new Vector3(prefabList[i - 1].transform.position.x + 14,0,0);
+					prefabList[i].transform.position = new Vector3(prefabList[i - 1].transform.position.x + 14,0,1);
 				}
 			}
 		}
