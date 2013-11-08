@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BackgroundScript : MonoBehaviour 
 {
-	public static BackgroundScript Instance;
+	
 	public float currTime, startTime;
 	public int currentLane, prevLane;
 	public Texture2D [] colors;
@@ -11,9 +11,8 @@ public class BackgroundScript : MonoBehaviour
 	public GameObject camera;      
 	private mainPlayer playerScript;
 	private GameObject player;      
-	public bool changed;
-	// checking bools objects. 
 	
+	// checking bools objects. 
 	
 	
 	// Use this for initialization
@@ -52,7 +51,15 @@ public class BackgroundScript : MonoBehaviour
 			}			
 		}
 		currTime += Time.deltaTime;
-		checkBools();
+		if(changed)
+		{
+			checkBools();
+			changeOthers();
+		}
+	}
+	void changeOthers()
+	{
+		
 	}
 	void getColor()
 	{

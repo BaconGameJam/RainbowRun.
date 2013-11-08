@@ -2,9 +2,14 @@
 using System.Collections;
 
 public class CoinSpwner : MonoBehaviour {
-	public int currentCount, maxCount;
+	public static CoinSpwner Instance;
+	public GoldCoin coinScript;
 	public GameObject goldcoin;
 	private GameObject [] clones;
+	
+	public bool fast, slow, prevFast, prevSlow;
+	public int currentCount, maxCount;
+	
 	// Use this for initialization
 	void Start () 	
 	{
@@ -22,5 +27,8 @@ public class CoinSpwner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		
+	
+		
 	}
 }

@@ -3,15 +3,22 @@ using System.Collections;
 
 public class GoldCoin : MonoBehaviour 
 {
+	public static GoldCoin Instance;
+	public ForegroundScript roadScript;
+	public GameObject roadO;
 	
 	private Vector3 startPosition, currentPosition;
 	public int currentLane;
 	public float currentSpeed, startTime, currentTime, rotSpeed, rotPosition, fastSpeed, slowSpeed, startPos;
-	private bool fast, slow;
+	public bool fast, slow;
 	
 	// Use this for initialization
 	void Start () 
 	{
+	
+		Instance = this;
+		roadO = GameObject.FindGameObjectWithTag("road");
+		roadScript = roadO.GetComponent<ForegroundScript>();
 		startPosition = new Vector3(30,getStartPosition(),-1);
 		this.transform.position = startPosition;
 		startTime = (float)Random.Range(0.0f,10.0f);
@@ -29,6 +36,20 @@ public class GoldCoin : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		
+	
+		if(roadScript.fast && !fast)
+		{
+			fast = true;
+			slow = false;
+		}
+		else if( roadScript.slow && !slow)
+		{
+			slow = true;
+			fast = false;
+		}
+		
+		
 		if(startTime < currentTime)
 		{
 			if(fast)
