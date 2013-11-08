@@ -3,15 +3,15 @@ using System.Collections;
 
 public class BackgroundScript : MonoBehaviour 
 {
-	
-	public float currTime, startTime;
+	public static BackgroundScript Instance;
+	private float currTime, startTime;
 	public int currentLane, prevLane;
 	public Texture2D [] colors;
 	private ForegroundScript roadScript;
-	public GameObject camera;      
+	private GameObject roadO;   
 	private mainPlayer playerScript;
 	private GameObject player;      
-	
+
 	// checking bools objects. 
 	
 	
@@ -22,18 +22,16 @@ public class BackgroundScript : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player");
 		playerScript = player.GetComponent<mainPlayer>();
 
-		for(int i = 0; i< 3; i++)
-		{		
-		
-			roadScript = camera.GetComponent<ForegroundScript>();
-		}
+		roadO = GameObject.FindGameObjectWithTag("MainCamera");
+		roadScript = roadO.GetComponent<ForegroundScript>();
 		
 		currentLane = getRandomLane();
 		prevLane = currentLane;
 		getColor();
 		currTime = 0;
 		startTime = getStartTime();
-		changed = false;
+	
+		
 	}
 	
 	// Update is called once per frame
@@ -51,11 +49,11 @@ public class BackgroundScript : MonoBehaviour
 			}			
 		}
 		currTime += Time.deltaTime;
-		if(changed)
-		{
+		
 			checkBools();
-			changeOthers();
-		}
+			
+			
+		
 	}
 	void changeOthers()
 	{
@@ -100,18 +98,19 @@ public class BackgroundScript : MonoBehaviour
 	
 	void checkBools()
 	{
-		if(playerScript.currentLane == currentLane )
-		{
-			roadScript.fast = true;
-			roadScript.slow = false;
-			changed = false;			
-		}
-		else
-		{
-			changed = false;
-			roadScript.fast = false;
-			roadScript.slow = true;
+		
+			if(playerScript.currentLane == currentLane )
+			{
+				roadScript.fast = true;
+				roadScript.slow = false;
+						
+			}
+			else
+			{
 			
-		}
+				roadScript.fast = false;
+				roadScript.slow = true;
+			}
+		
 	}
 }

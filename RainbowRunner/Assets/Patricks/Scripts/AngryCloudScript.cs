@@ -3,27 +3,28 @@ using System.Collections;
 
 public class AngryCloudScript : MonoBehaviour 
 {
-	public GameObject player;
-	private mainPlayer playerScript;
+	private ForegroundScript roadScript;
+	private GameObject roadO;
 	
 	private float slowSpeed, fastSpeed, currSpeed,
 		currTime, startTime, startPos;
-	private Vector3 endPos, startP;
-	public bool goingSlow, goingFast;
-	public int tempStart;
-	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
-	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
-	public  ColorState colorState;
+	private Vector3  startP;
+	public bool fast , slow;
+	public int currentLane;
+
+	
 
 	// Use this for initialization
 	void Start () 
 	{
-		playerScript = player.GetComponent<mainPlayer>();
+		roadO = GameObject.FindGameObjectWithTag("MainCamera");
+		roadScript = roadO.GetComponent<ForegroundScript>();
+		
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
 		currSpeed = 0.0f;
 		startP = new Vector3(30, getStartPos(), -1);
-		endPos = new Vector3(-30,startP.y,-1);
+	
 		this.transform.position = startP;
 		startTime = getStartTime();
 		
@@ -34,18 +35,13 @@ public class AngryCloudScript : MonoBehaviour
 	{
 		if(startTime < currTime)
 		{
-			if(goingSlow)
-			{
-				currSpeed = slowSpeed;
-			}
-			else if(goingFast)
+			if(roadScript.fast)
 			{
 				currSpeed = fastSpeed;
 			}
 			else
 			{
-				currSpeed = 0.0f;
-				
+				currSpeed = slowSpeed;
 			}
 		}
 		if (currSpeed != 0)
@@ -69,33 +65,32 @@ public class AngryCloudScript : MonoBehaviour
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		tempStart = Random.Range(0,-6);
+		currentLane = Random.Range(0,-6);
 		
-		switch(tempStart)
+		switch(currentLane)
 		{
 		case 0:
 			startPos = 0.2f;	// RED
-			colorState = ColorState.RED;
+		
 			break;
 		case -1:
 			startPos = -0.40f;	// ORANGE
-			colorState = ColorState.ORANGE;
+		
 			break;
 		case -2:
 			startPos = -1.3f;	// YELLOW
-			colorState = ColorState.YELLOW;
+		
 			break;
 		case -3:
 			startPos = -2.2f;	// GREEN
-			colorState = ColorState.GREEN;
+	
 			break;
 		case -4:
 			startPos = -3.0f;	// BLUE
-			colorState = ColorState.BLUE;
+
 			break;
 		case -5:
 			startPos = -3.8f;	// PURPLE
-			colorState = ColorState.PURPLE;
 			break;
 			
 		}
@@ -119,12 +114,5 @@ public class AngryCloudScript : MonoBehaviour
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
 	
-	/*public void OnTriggerEnter(Collider other)
-	{
-		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
-		{
-			print ("hit the player");
-			this.gameObject.transform.position = endPos;
-		}
-	}*/
+
 }

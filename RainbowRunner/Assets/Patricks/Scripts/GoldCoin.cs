@@ -7,9 +7,9 @@ public class GoldCoin : MonoBehaviour
 	public ForegroundScript roadScript;
 	public GameObject roadO;
 	
-	private Vector3 startPosition, currentPosition;
+	private Vector3 startPosition;
 	public int currentLane;
-	public float currentSpeed, startTime, currentTime, rotSpeed, rotPosition, fastSpeed, slowSpeed, startPos;
+	private float currentSpeed, startTime, currentTime, rotSpeed, rotPosition, fastSpeed, slowSpeed, startPos;
 	public bool fast, slow;
 	
 	// Use this for initialization
@@ -17,17 +17,16 @@ public class GoldCoin : MonoBehaviour
 	{
 	
 		Instance = this;
-		roadO = GameObject.FindGameObjectWithTag("road");
+		roadO = GameObject.FindGameObjectWithTag("MainCamera");
 		roadScript = roadO.GetComponent<ForegroundScript>();
 		startPosition = new Vector3(30,getStartPosition(),-1);
 		this.transform.position = startPosition;
 		startTime = (float)Random.Range(0.0f,10.0f);
-		fast = true;
-		slow = false;
+
 		currentSpeed = 0.0f;
 		fastSpeed = 6.0f;
 		slowSpeed = 4.0f;
-		currentPosition = startPosition;
+	
 		rotSpeed = 0.01f;
 		rotPosition = 0.0f;
 		
@@ -38,12 +37,12 @@ public class GoldCoin : MonoBehaviour
 	{
 		
 	
-		if(roadScript.fast && !fast)
+		if(roadScript.fast )
 		{
 			fast = true;
 			slow = false;
 		}
-		else if( roadScript.slow && !slow)
+		else 
 		{
 			slow = true;
 			fast = false;
@@ -80,7 +79,7 @@ public class GoldCoin : MonoBehaviour
 				rotPosition = 0;
 				startTime = (float)Random.Range(0.0f, 10.0f);
 				this.transform.position = new Vector3(30, getStartPosition(), -1);
-				currentPosition = this.transform.position;
+			
 		}
 		currentTime += Time.deltaTime;
 	}

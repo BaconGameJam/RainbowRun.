@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class mainPlayer : MonoBehaviour {
+	
 	public static mainPlayer Instance;
 	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
  	public  ColorState colorState;
-	private BackgroundScript backScript;
-	public GameObject background;
+
 	private ShamrockScript shamScript;
 	public GameObject sham;      
 	private TimeClockScript clockScript;
@@ -41,7 +41,8 @@ public class mainPlayer : MonoBehaviour {
 		fullKScript = fullK.GetComponent<KettleFullScript>();
 		emptyKScript = emptyK.GetComponent<KettleEmptyScript>();
 		cloudScript = cloud.GetComponent<AngryCloudScript>();
-		backScript = background.GetComponent<BackgroundScript>();
+	
+		this.transform.position = new Vector3(xPostion,yPostion,zPostion);
 	}
 	
 	// Update is called once per frame
@@ -105,7 +106,7 @@ public class mainPlayer : MonoBehaviour {
 			colorState = ColorState.PURPLE;
 			break;
 		}
-		backScript.changed = true;
+		
 	}
 	
 	public void OnTriggerStay(Collider other)
@@ -115,7 +116,7 @@ public class mainPlayer : MonoBehaviour {
         if (other.gameObject.tag == "cloud") 
 		{ 
 			
-			if(cloudScript.tempStart == currentLane)
+			if(cloudScript.currentLane == currentLane)
 			{
 			
 				//Reduce Time
@@ -139,7 +140,7 @@ public class mainPlayer : MonoBehaviour {
 		else if (other.gameObject.tag == "kettleEmpty")
 		{ 
 			
-			if( emptyKScript.tempStart == currentLane)
+			if( emptyKScript.currentLane == currentLane)
         	{
 					//
 			//Reset Multiply
@@ -153,7 +154,7 @@ public class mainPlayer : MonoBehaviour {
 		else if (other.gameObject.tag == "kettleFull")
 		{ 
 			
-			if( fullKScript.tempStart == currentLane)
+			if( fullKScript.currentLane == currentLane)
         	{
 			
 			//Reset Multiply
@@ -166,7 +167,7 @@ public class mainPlayer : MonoBehaviour {
 		else if (other.gameObject.tag == "timeClock")
 		{ 
 			
-			if(clockScript.tempStart == currentLane)
+			if(clockScript.currentLane == currentLane)
         	{
 			//Add Time
 			//AddTime(10);
@@ -178,7 +179,7 @@ public class mainPlayer : MonoBehaviour {
 		else if (other.gameObject.tag == "Shamrock" )
 		{
 			
-			if(shamScript.tempStart == currentLane)
+			if(shamScript.currentLane == currentLane)
         	{
             //Up Multiplyer
 			other.gameObject.transform.position = new Vector3(-30,0,-1);

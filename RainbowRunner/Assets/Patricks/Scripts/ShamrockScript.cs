@@ -3,27 +3,26 @@ using System.Collections;
 
 public class ShamrockScript : MonoBehaviour 
 {
-public GameObject player;
-	private mainPlayer playerScript;
+	public ForegroundScript roadScript;
+	public GameObject roadO;
 	
 	private float slowSpeed, fastSpeed, currSpeed,
 		currTime, startTime, startPos;
-	private Vector3 endPos, startP;
+	private Vector3  startP;
 	public bool goingSlow, goingFast;
-	public int tempStart;
-	// USED TO TRACK THE CURRENT ROW OF THE OBJECT SO PLAYER CANNOT COLLECT IF NOT ON THE SAME ROW
-	public enum ColorState{RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, NONE};
-	public  ColorState colorState;
+	public int currentLane;
+
 
 	// Use this for initialization
 	void Start () 
 	{
-		playerScript = player.GetComponent<mainPlayer>();
+		roadO = GameObject.FindGameObjectWithTag("MainCamera");
+		roadScript = roadO.GetComponent<ForegroundScript>();
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
 		currSpeed = 0.0f;
 		startP = new Vector3(30, getStartPos(), -1);
-		endPos = new Vector3(-30,startP.y,-1);
+		
 		this.transform.position = startP;
 		startTime = getStartTime();
 		
@@ -62,6 +61,16 @@ public GameObject player;
 			SetStartPosition();
 			this.transform.position = startP;
 		}
+		if(roadScript.fast)
+		{
+			goingFast = true;
+			goingSlow = false;
+		}
+		else
+		{
+			goingSlow = true;
+			goingFast = false;
+		}
 		currTime += Time.deltaTime;
 
 	}
@@ -69,33 +78,33 @@ public GameObject player;
 	// Returns a float to be used for the starting Y position
 	float getStartPos()
 	{
-		tempStart = Random.Range(0,-6);
+		currentLane = Random.Range(0,-6);
 		
-		switch(tempStart)
+		switch(currentLane)
 		{
 		case 0:
 			startPos = 0.4f;	// RED
-			colorState = ColorState.RED;
+
 			break;
 		case -1:
 			startPos = -0.3f;	// ORANGE
-			colorState = ColorState.ORANGE;
+	
 			break;
 		case -2:
 			startPos = -1.1f;	// YELLOW
-			colorState = ColorState.YELLOW;
+	
 			break;
 		case -3:
 			startPos = -2.0f;	// GREEN
-			colorState = ColorState.GREEN;
+	
 			break;
 		case -4:
 			startPos = -2.7f;	// BLUE
-			colorState = ColorState.BLUE;
+	
 			break;
 		case -5:
 			startPos = -3.7f;	// PURPLE
-			colorState = ColorState.PURPLE;
+		
 			break;
 			
 		}
@@ -119,12 +128,5 @@ public GameObject player;
 		startP = new Vector3(30, getStartPos(), -1);	
 	}
 	
-	/*public void OnTriggerEnter(Collider other)
-	{
-		if(other.gameObject.tag == "Player" && tempStart == playerScript.currentLane)
-		{
-			print ("hit the player");
-			this.gameObject.transform.position = endPos;
-		}
-	}*/
+
 }

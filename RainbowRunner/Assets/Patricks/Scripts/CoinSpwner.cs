@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CoinSpwner : MonoBehaviour {
 	public static CoinSpwner Instance;
-	public GoldCoin coinScript;
+	
 	public GameObject goldcoin;
 	private GameObject [] clones;
 	

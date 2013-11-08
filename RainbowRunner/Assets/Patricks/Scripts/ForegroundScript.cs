@@ -6,8 +6,8 @@ public class ForegroundScript : MonoBehaviour
 	public ForegroundScript Instance;
 	public GameObject [] prefabList;
 	
-	private float slowSpeed, fastSpeed, velocity;
-	private float startPos;
+	private float slowSpeed, fastSpeed; 
+	
 	public bool slow, fast;
 	// Use this for initialization
 	void Start () 
@@ -15,8 +15,8 @@ public class ForegroundScript : MonoBehaviour
 		Instance = this;
 		slowSpeed = 4.0f;
 		fastSpeed = 6.0f;
-		startPos = 28.0f;
-		velocity = 0.25f;
+	
+		
 		slow = true;
 		fast = false;
 		
